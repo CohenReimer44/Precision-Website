@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request a quote — Precision Christmas Lighting</title>
+    <meta
+      name="description"
+      content="Request a Christmas lighting quote. Name, property address, and phone are required. Email and a short note are optional."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,700&family=Mulish:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="precision-christmas-logo.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo-link" href="index.html" aria-label="Precision Christmas Lighting">
+          <img class="logo-img" src="precision-christmas-logo.svg" alt="" width="325" height="62" />
+        </a>
+        <nav class="nav-desktop" aria-label="Primary">
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="nav-link" href="index.html#process">Process</a>
+          <a class="btn" href="quote.html">Request a quote</a>
+        </nav>
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-menu"
+        >
+          Menu
+        </button>
+      </div>
+      <nav class="nav-mobile" id="site-menu" aria-label="Mobile">
+        <ul>
+          <li><a href="index.html#work">Work</a></li>
+          <li><a href="index.html#process">Process</a></li>
+        </ul>
+        <a class="btn btn-lg" href="quote.html">Request a quote</a>
+      </nav>
+    </header>
+
+    <main class="quote-layout">
+      <aside class="quote-aside">
+        <p class="eyebrow">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Niagara, Burlington, and Oakville
+        </p>
+        <h1>Request a quote</h1>
+        <p>
+          Three fields make a request: your name, the property address, and a phone number. Leave
+          the rest blank if that is all you know tonight.
+        </p>
+        <ol class="expectations">
+          <li>
+            <p class="step-number">01</p>
+            <h2>The address is the brief</h2>
+            <p>A street address tells us the roof, the peaks, and whether a tree is part of the line.</p>
+          </li>
+          <li>
+            <p class="step-number">02</p>
+            <h2>A person calls</h2>
+            <p>
+              On a live job, the phone number is how a visit gets booked. This demo does not place
+              that call.
+            </p>
+          </li>
+          <li>
+            <p class="step-number">03</p>
+            <h2>The note can wait</h2>
+            <p>
+              Email and a description help, and they are optional. Colour limits and a tall gable
+              are useful if you have them.
+            </p>
+          </li>
+        </ol>
+      </aside>
+
+      <div class="quote-main">
+        <form class="quote-panel" id="quote-form" novalidate>
+          <div class="form-alert hidden" id="form-alert" role="alert">
+            <p>This request is still empty where it counts.</p>
+            <ul id="form-alert-list"></ul>
+          </div>
+
+          <p class="hint">
+            Name, address, and phone are required. Email and a short note are optional. Nothing is
+            sent until those three are filled.
+          </p>
+
+          <div class="field">
+            <label for="name">Name <span>(required)</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+            <p class="field-error hidden" id="name-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="address">Address <span>(required)</span></label>
+            <input id="address" name="address" type="text" autocomplete="street-address" required />
+            <p class="field-error hidden" id="address-error"></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Phone <span>(required)</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+              <p class="field-error hidden" id="phone-error"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email <span>(optional)</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" />
+              <p class="field-error hidden" id="email-error"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="description">Short description <span>(optional)</span></label>
+            <textarea id="description" name="description"></textarea>
+            <p class="field-error hidden" id="description-error"></p>
+            <p class="field-note">
+              Roof height, a tree to wrap, a colour you do not want. 600 characters at most.
+            </p>
+          </div>
+
+          <button class="btn btn-lg" type="submit">Request a quote</button>
+        </form>
+
+        <div class="quote-panel success-panel hidden" id="quote-success" role="status">
+          <p class="eyebrow">
+            <span class="eyebrow-bar" aria-hidden="true"></span>
+            Recorded for this demo
+          </p>
+          <h2 id="success-title" tabindex="-1">Request recorded.</h2>
+          <p>
+            Nothing was emailed. These details stay on this page only, so the confirmation is
+            visible. A working desk would use them to book a look at the facade.
+          </p>
+          <dl>
+            <div class="record">
+              <dt>Name</dt>
+              <dd id="success-name"></dd>
+            </div>
+            <div class="record">
+              <dt>Address</dt>
+              <dd id="success-address"></dd>
+            </div>
+            <div class="record">
+              <dt>Phone</dt>
+              <dd id="success-phone"></dd>
+            </div>
+            <div class="record">
+              <dt>Email</dt>
+              <dd id="success-email"></dd>
+            </div>
+            <div class="record">
+              <dt>Note</dt>
+              <dd id="success-note"></dd>
+            </div>
+          </dl>
+          <button class="btn btn-lg" id="quote-reset" type="button">Submit another request</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo-link" href="index.html" aria-label="Precision Christmas Lighting">
+            <img class="logo-img" src="precision-christmas-logo.svg" alt="" width="325" height="62" />
+          </a>
+          <p>
+            Residential Christmas lighting for Niagara, Burlington, and Oakville. Measured,
+            installed, maintained, and taken down.
+          </p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <p class="footer-label">On this site</p>
+          <ul>
+            <li><a href="index.html#work">Work</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="quote.html">Request a quote</a></li>
+          </ul>
+        </nav>
+        <div class="credits">
+          <p class="footer-label">Photograph credits</p>
+          <p>
+            House photographs are free studies from Unsplash and Pexels of real residential
+            Christmas lighting, used as portfolio references.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bar">Precision Christmas Lighting</div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
