@@ -31,4 +31,4 @@ Open [http://localhost:4317](http://localhost:4317).
 - No drop shadows or outer glow
 - Palette: ink `#0C0C0C`, paper `#F3F0E8`, lime `#99FF07`, evergreen accents
 - Logo: `precision-christmas-logo.svg` (vectors from the Precision Christmas Lighting PDF)
-- House photos live in `work/` and are credited in the footer
+- Installation photos live in `work/`. The page uses web-sized copies; the camera files stay beside them.
