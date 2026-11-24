@@ -583,54 +583,34 @@ textarea {
 }
 
 .work-section {
-  /* No z-index here — keeps sticky heading free to sit above the bulb glow */
   position: relative;
-  display: grid;
   background: var(--snow);
 }
 
 .work-stage {
-  /* Layer 2: work photos under the glow */
   position: relative;
   z-index: 2;
-  grid-area: 1 / 1;
 }
 
 .work-heading {
-  position: sticky;
-  top: 5.25rem;
-  left: 0;
-  grid-area: 1 / 1;
-  align-self: start;
-  /* Layer 5: above bulb glow and the top photo */
-  z-index: 30;
-  width: max-content;
-  max-width: calc(100% - 2rem);
   margin: 0;
-  padding: 1.35rem 1rem 0.75rem;
+  padding: 3rem 1rem 1.5rem;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5.5vw, 3.5rem);
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  text-align: center;
   color: #fff;
-  pointer-events: none;
+  background: #000;
 }
 
 @media (min-width: 640px) {
-  .work-heading {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  .work-grid { --work-gap: 0.75rem; padding: 0.75rem; gap: 0.75rem; }
 }
 
-@media (min-width: 1024px) {
-  .work-heading {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
+@media (min-width: 1024px) { .work-heading { padding-left: 2rem; padding-right: 2rem; } }
 
 .section-intro .lede {
   margin: 0;
@@ -641,18 +621,16 @@ textarea {
 }
 
 .work-grid {
-  --work-gap: 0.5rem;
+  --work-gap: 1rem;
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--work-gap);
-  row-gap: var(--work-gap);
-  column-gap: var(--work-gap);
   padding: var(--work-gap);
   align-items: stretch;
-  grid-auto-flow: row;
-  background: var(--ice);
+  grid-auto-flow: row dense;
+  background: #000;
 }
 
 .work-grid > * {
@@ -662,16 +640,18 @@ textarea {
 
 .work-frame {
   position: relative;
-  min-height: 28vh;
-  height: 100%;
   overflow: hidden;
-  background: var(--ice);
+  background: #000;
+  aspect-ratio: 4 / 5;
 }
+
+.work-frame.tall-landscape { aspect-ratio: 3 / 2; }
+.work-frame.tall-square { aspect-ratio: 1 / 1; }
 
 .work-frame img {
   width: 100%;
   height: 100%;
-  min-height: 28vh;
+  display: block;
   object-fit: cover;
 }
 
@@ -708,11 +688,16 @@ textarea {
   display: flex;
   overflow: hidden;
   width: 100%;
-  min-height: 28vh;
-  height: 100%;
+  min-height: 100%;
+  aspect-ratio: 4 / 5;
   margin: 0;
   color: var(--white);
   background: var(--snow);
+}
+
+@media (max-width: 639px) {
+  .work-frame, .review-panel { aspect-ratio: 4 / 4.5; }
+  .work-frame.tall-landscape { aspect-ratio: 4 / 3; }
 }
 
 .review-bg {
@@ -800,11 +785,18 @@ textarea {
 }
 
 .work-extra {
+  display: contents;
+}
+
+.work-extra .work-more-item {
   display: none;
 }
 
-.work-extra.is-open {
-  display: contents;
+.work-extra .work-more-item.is-visible {
+  display: block;
+}
+.work-extra .review-panel.work-more-item.is-visible {
+  display: flex;
 }
 
 .process {
@@ -1028,9 +1020,10 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: min(100%, 26rem);
+  width: min(100%, 48rem);
   margin-inline: auto;
-  gap: 1rem;
+  gap: 1.25rem;
+  text-align: center;
 }
 
 .cta-band h2 {
@@ -1041,15 +1034,27 @@ textarea {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  text-align: center;
   text-transform: uppercase;
+}
+
+.cta-band-row p {
+  margin: 0.75rem 0 0;
+  max-width: 42rem;
+  margin-inline: auto;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.cta-contact, .footer-contact {
+  font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .btn-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: min(100%, 26rem);
   min-height: 5.5rem;
   padding: 1.25rem 2rem;
   border: 0;
@@ -1057,6 +1062,7 @@ textarea {
   color: var(--white);
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+  margin-inline: auto;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1478,38 +1484,31 @@ textarea {
   }
 
   .work-grid {
-    --work-gap: 0.5rem;
+    --work-gap: 1rem;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--work-gap);
-    row-gap: var(--work-gap);
-    column-gap: var(--work-gap);
     padding: var(--work-gap);
+    align-items: stretch;
   }
 
   .span-4 { grid-column: span 4; }
   .span-5 { grid-column: span 5; }
+  .span-6 { grid-column: span 6; }
   .span-7 { grid-column: span 7; }
   .span-8 { grid-column: span 8; }
   .span-12 { grid-column: span 12; }
 
   .work-frame,
-  .review-panel,
-  .tall-62,
-  .tall-64,
-  .tall-72,
-  .tall-78,
-  .tall-82 {
-    min-height: 28vh;
+  .review-panel {
+    min-height: 0;
     height: 100%;
   }
 
   .work-frame img,
-  .tall-62 img,
-  .tall-64 img,
-  .tall-72 img,
-  .tall-78 img,
-  .tall-82 img {
-    min-height: 28vh;
+  .review-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .footer-grid {

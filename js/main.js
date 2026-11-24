@@ -66,10 +66,29 @@
   var extraWork = document.getElementById("work-extra");
 
   if (moreButton && extraWork) {
+    var extraItems = Array.prototype.slice.call(extraWork.querySelectorAll(".work-more-item"));
+    var batchSize = 6;
+    var shown = 0;
+
+    function revealBatch() {
+      var next = Math.min(shown + batchSize, extraItems.length);
+      for (var i = shown; i < next; i++) extraItems[i].classList.add("is-visible");
+      shown = next;
+      extraWork.classList.add("is-open");
+      var done = shown >= extraItems.length;
+      if (done) {
+        moreButton.style.display = "none";
+        moreButton.setAttribute("aria-expanded", "true");
+      } else {
+        moreButton.style.display = "";
+        moreButton.disabled = false;
+        moreButton.textContent = "Show more";
+        moreButton.setAttribute("aria-expanded", "false");
+      }
+    }
+
     moreButton.addEventListener("click", function () {
-      var open = extraWork.classList.toggle("is-open");
-      moreButton.setAttribute("aria-expanded", open ? "true" : "false");
-      moreButton.textContent = open ? "Show less" : "Show more";
+      if (shown < extraItems.length) revealBatch();
     });
   }
 
